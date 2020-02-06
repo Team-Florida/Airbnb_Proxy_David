@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  proxy:
+    image: dapaul2121/airbnb_proxy:proxy
+    depends_on:
+        - 'checkout'
+        - 'carousel'
+    ports: 
+        - '3000:3000'
+
+  checkout:
+    image: dapaul2121/airbnb_proxy:checkout
+    depends_on:
+      - 'database'
+    ports: 
+      - '2000:2000'
+  
+  carousel:
+    image: dapaul2121/airbnb_proxy:carousel
+    depends_on:
+      - 'database'
+    ports: 
+      - '2500:2500'
+  
+  database:
+    image: mongo:latest
